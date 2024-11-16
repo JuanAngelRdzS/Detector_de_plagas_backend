@@ -1,0 +1,57 @@
+{% extends "./base.html" %}
+
+{% block title %} GESTION DE USUARIOS {% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+    <H2>Gestion de usuarios</H2>
+    <div class="card">
+        <div class="card-body">
+            <form action="/registrarUsuario/" method="POST"> {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" id="numiduser" name="numiduser" class="form-control" min="1" max="10" value="1" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="txtname" name="txtname" class="form-control" placeholder="name" maxlength="50" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="txtCorreo" name="txtCorreo" class="form-control" placeholder="correo" maxlength="30" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+        <h1>Listado de usuarios</h1>
+        <div class="table-responsive py-2">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th colspan="2">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for c in registros %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                       <td>{{c.IdUser}}</td>
+                       <td>{{c.NameUser}}</td>
+                       <td>{{c.CorreoUse}}</td>
+                       <td><a href="editarUser/{{c.IdUser}}" class="btn btn-info">Editar</a></td>
+                       <td><a href="borrarUser/{{c.IdUser}}" class="btn btn-danger btnEliminacion">Borrar</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
