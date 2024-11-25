@@ -1,0 +1,29 @@
+{% extends "./base.html" %}
+
+{% block title %} GESTION DE USUARIOS {% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+    <H2>Editar Usuarios</H2>
+    <div class="card">
+        <div class="card-body">
+            <form action="/editaPlaga/{{plaga.IdPlaga}}" method="POST"> {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" id="numidplaga" name="numidplaga" value="{{plaga.IdPlaga}}" class="form-control" readonly required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="txtplaga" name="txtplaga" value="{{plaga.NamePlaga}}" class="form-control" placeholder="Nombre de Plaga" maxlength="50" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="txtdesc" name="txtdesc" value="{{plaga.DescPlaga}}" class="form-control" placeholder="Descripcion" maxlength="300" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
+                </div>
+            </form>                     
+        </div>
+    </div>
+    </div>
+</div>
+{% endblock %}
