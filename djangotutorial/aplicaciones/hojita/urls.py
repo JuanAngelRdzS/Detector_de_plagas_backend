@@ -1,5 +1,7 @@
 from django.urls import path
 from .import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.home),
@@ -12,5 +14,11 @@ urlpatterns = [
     path('editarPlaga/<IdPlaga>', views.editarPlaga),
     path('editaPlaga/<IdPlaga>', views.editaPlaga),
     path('borrarPlaga/<IdPlaga>', views.borrarPlaga),
+    
+    path('upload/', views.upload_image, name='upload_image'),
+    path('csrf-token/', views.csrf_token),
 
 ]
+
+if settings.DEBUG:  
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
